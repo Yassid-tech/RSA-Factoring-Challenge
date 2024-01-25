@@ -17,9 +17,8 @@ on the target machine.
 Time limit: Program will be killed after 5 seconds if not finished.
 Push all scripts, source code, etc..., to your repo.
 """
-
-
 import sys
+
 
 def factorize_number(number):
 	"""
@@ -32,9 +31,10 @@ def factorize_number(number):
 			return number // i, i
 	return number, 1
 
+
 def process_file(file_path):
-	"""
-	Processes the file and prints the factorization of each number.
+        """
+        Processes the file and prints the factorization of each number.
 	"""
 	try:
 		with open(file_path) as file:
@@ -47,6 +47,7 @@ def process_file(file_path):
 	except ValueError:
 		print("Error: Invalid input in the file.")
 
+
 def main():
 	"""
 	Main function to handle command-line arguments and start processing the file.
@@ -56,6 +57,7 @@ def main():
 		sys.exit(1)
 	file_path = sys.argv[1]
 	process_file(file_path)
+
 
 if __name__ == "__main__":
 	main()
