@@ -22,8 +22,6 @@ import sys
 
 def factorize_number(number):
     """Factorizes a given number into product of two smaller numbers."""
-
-
     if number % 2 == 0:
         return number // 2, 2
     for i in range(3, (number // 2) + 1, 2):
@@ -34,8 +32,6 @@ def factorize_number(number):
 
 def process_file(file_path):
     """Processes the file and prints the factorization of each number."""
-
-
     try:
         with open(file_path) as file:
             for line in file:
@@ -51,8 +47,6 @@ def process_file(file_path):
 def main():
     """Main function to handle command-line arguments
     and start processing the file."""
-
-
     if len(sys.argv) != 2:
         print("Usage: {} <file>".format(sys.argv[0]))
         sys.exit(1)
