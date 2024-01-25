@@ -1,0 +1,61 @@
+#!/usr/bin/python3
+"""
+Factorize as many numbers as possible into a product of two smaller numbers.
+
+Usage: factors <file>
+where <file> is a file containing natural numbers to factor.
+One number per line.
+Assumes all lines have valid natural numbers greater that 1.
+No emtpy lines, and no space before/after the valid number.
+The file will always end with a new line.
+Output format: n=p*q, one factorization per line.
+p and q don't have to be prime numbers.
+See example.
+Processing order for numbers in the file is arbitrary.
+The program should run without any dependency; no installations allowed
+on the target machine.
+Time limit: Program will be killed after 5 seconds if not finished.
+Push all scripts, source code, etc..., to your repo.
+"""
+
+
+import sys
+
+def factorize_number(number):
+	"""
+	Factorizes a given number into product of two smaller numbers.
+	"""
+	if number % 2 == 0:
+		return number // 2, 2
+	for i in range(3, (number // 2) + 1, 2):
+		if number % i == 0:
+			return number // i, i
+	return number, 1
+
+def process_file(file_path):
+	"""
+	Processes the file and prints the factorization of each number.
+	"""
+	try:
+		with open(file_path) as file:
+			for line in file:
+				rev_number = int(line.strip())
+				factors = factorize_number(rev_number)
+				print("{}={}*{}".format(rev_number, factors[0], factors[1]))
+	except FileNotFoundError:
+		print("Error: File not found.")
+	except ValueError:
+		print("Error: Invalid input in the file.")
+
+def main():
+	"""
+	Main function to handle command-line arguments and start processing the file.
+	"""
+	if len(sys.argv) != 2:
+		print("Usage: {} <file>".format(sys.argv[0]))
+		sys.exit(1)
+	file_path = sys.argv[1]
+	process_file(file_path)
+
+if __name__ == "__main__":
+	main()
